@@ -138,7 +138,7 @@ def parse1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbose,
     service = services.get(option, services['all'])
     if service == '/tika': 
         responseMimeType = 'text/plain'
-    status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
+    status, response = callServer('put', serverEndpoint, service, open(path, 'rb'),
                                   {'Accept': responseMimeType}, verbose)
     if mode == 'remote': 
         os.unlink(path)
