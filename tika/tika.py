@@ -138,7 +138,7 @@ def parse1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbose,
     service = services.get(option, services['all'])
     if service == '/tika': 
         responseMimeType = 'text/plain'
-    status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
+    status, response = callServer('put', serverEndpoint, service, open(path, 'rb'),
                                   {'Accept': responseMimeType}, verbose)
     if mode == 'remote': 
         os.unlink(path)
@@ -180,7 +180,7 @@ def detectType1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbos
     if option not in services:
         die('Detect option must be one of %s' % str(list(services.keys())))
     service = services[option]
-    status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
+    status, response = callServer('put', serverEndpoint, service, open(path, 'rb'),
             {'Accept': responseMimeType, 'Content-Disposition': 'attachment; filename=%s' % os.path.basename(path)},
             verbose)
     return (status, response)
