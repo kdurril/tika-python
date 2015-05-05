@@ -105,8 +105,8 @@ def parseAndSave(option, urlOrPaths, outDir=None, serverEndpoint=ServerEndpoint,
              metaPath = os.path.join(outDir, os.path.split(path)[1] + metaExtension)
              echo2('Writing %s' % metaPath)
              with open(metaPath, 'w') as f:
-                 print >>f, parse1(option, path, serverEndpoint, verbose, \
-                                   responseMimeType, services)
+                 f.write(parse1(option, path, serverEndpoint, verbose,\
+                                   responseMimeType, services)) 
          metaPaths.append(metaPath)
     return metaPaths
 
