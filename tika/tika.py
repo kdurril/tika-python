@@ -53,10 +53,15 @@ Example usage as python client:
 -- jsonOutput = parse1('all', filename)
 
 """
-
+from __future__ import print_function
+from __future__ import unicode_literals
 import sys, os, getopt, time
-from urllib import urlretrieve
-from urlparse import urlparse
+from future.standard_library import install_aliases
+install_aliases()
+
+from urllib.parse import urlparse, urlencode
+from urllib.request import urlopen, Request
+from urllib.request import urlretrieve
 import requests
 import socket 
 
@@ -146,8 +151,8 @@ def callServer(verb, serverEndpoint, service, data, headers, verbose=Verbose,
     verbFn = httpVerbs[verb]
     resp = verbFn(serviceUrl, data=data, headers=headers)
     if verbose: 
-        print sys.stderr, "Request headers: ", headers
-        print sys.stderr, "Response headers: ", resp.headers
+        print(sys.stderr, "Request headers: ", headers)
+        print(sys.stderr, "Response headers: ", resp.headers)
     if resp.status_code != 200:
         warn('Tika server returned status:', resp.status_code)
     return (resp.status_code, resp.content)
@@ -242,15 +247,15 @@ def checkPortIsOpen(remoteServerHost=ServerHost, port = Port):
         sock.close()
 
     except KeyboardInterrupt:
-        print "You pressed Ctrl+C"
+        print("You pressed Ctrl+C")
         sys.exit()
 
     except socket.gaierror:
-        print 'Hostname could not be resolved. Exiting'
+        print('Hostname could not be resolved. Exiting')
         sys.exit()
 
     except socket.error:
-        print "Couldn't connect to server"
+        print("Couldn't connect to server")
         sys.exit()
 
 def main(argv=None):
@@ -263,7 +268,7 @@ def main(argv=None):
     try:
         opts, argv = getopt.getopt(argv[1:], 'hi:s:o:p:v',
           ['help', 'install=', 'server=', 'output=', 'port=', 'verbose'])
-    except getopt.GetoptError, (msg, bad_opt):
+    except getopt.GetoptError as (msg, bad_opt):
         die("%s error: Bad option: %s, %s" % (argv[0], bad_opt, msg))
         
     tikaServerJar = TikaServerJar
@@ -291,7 +296,7 @@ def main(argv=None):
 if __name__ == '__main__':
     resp = main(sys.argv)
     if type(resp) == list:
-        print '\n'.join([r[1] for r in resp])
+        print('\n'.join([r[1] for r in resp]))
     else:
-        print resp
+        print(resp)
 
