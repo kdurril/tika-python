@@ -16,7 +16,7 @@
 # limitations under the License.
 # 
 from __future__ import unicode_literals
-from tika import detectType1, callServer, ServerEndpoint
+from tika.tika import detectType1, callServer, ServerEndpoint
 
 def from_file(filename):
     jsonOutput = detectType1('type', filename)

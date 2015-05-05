@@ -16,6 +16,20 @@
 # limitations under the License.
 # 
 
+#from __future__ import print_function
+#from __future__ import unicode_literals
+import sys, os, getopt, time
+#from warnings import warn
+#from future.standard_library import install_aliases
+#install_aliases()
+
+from urllib.parse import urlparse, urlencode
+from urllib.request import urlopen, Request
+from urllib.request import urlretrieve
+import requests
+import socket 
+
+
 USAGE = """
 tika.py [-v] [-o <outputDir>] [--server <TikaServerEndpoint>] [--install <UrlToTikaServerJar>] [--port <portNumber>] <command> <option> <urlOrPathToFile>
 
@@ -53,17 +67,6 @@ Example usage as python client:
 -- jsonOutput = parse1('all', filename)
 
 """
-from __future__ import print_function
-from __future__ import unicode_literals
-import sys, os, getopt, time
-from future.standard_library import install_aliases
-install_aliases()
-
-from urllib.parse import urlparse, urlencode
-from urllib.request import urlopen, Request
-from urllib.request import urlretrieve
-import requests
-import socket 
 
 TikaServerJar  = "http://search.maven.org/remotecontent?filepath=org/apache/tika/tika-server/1.8/tika-server-1.8.jar"
 StartServerCmd = "java -jar %s --port %s >& "+ sys.path[0] +"tika-server.log &"
@@ -126,15 +129,19 @@ def parse(option, urlOrPaths, serverEndpoint=ServerEndpoint, verbose=Verbose,
 def parse1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbose,
           responseMimeType='application/json',
           services={'meta': '/meta', 'text': '/tika', 'all': '/rmeta'}):
+
     """Parse the object and return extracted metadata and/or text in JSON format."""
-    path, type = getRemoteFile(urlOrPath, '/tmp')
+
+    path, mode = getRemoteFile(urlOrPath, '/tmp')
     if option not in services:
         warn('config option must be one of meta, text, or all; using all.')
     service = services.get(option, services['all'])
-    if service == '/tika': responseMimeType = 'text/plain'
+    if service == '/tika': 
+        responseMimeType = 'text/plain'
     status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
                                   {'Accept': responseMimeType}, verbose)
-    if type == 'remote': os.unlink(path)
+    if mode == 'remote': 
+        os.unlink(path)
     return (status, response)
 
 
@@ -147,7 +154,7 @@ def callServer(verb, serverEndpoint, service, data, headers, verbose=Verbose,
 
     serviceUrl  = serverEndpoint + service
     if verb not in httpVerbs:
-        die('Tika Server call must be one of %s' % str(httpVerbs.keys()))
+        die('Tika Server call must be one of %s' % str(list(httpVerbs.keys())))
     verbFn = httpVerbs[verb]
     resp = verbFn(serviceUrl, data=data, headers=headers)
     if verbose: 
@@ -171,7 +178,7 @@ def detectType1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbos
     """Detect the MIME/media type of the stream and return it in text/plain."""
     path, mode = getRemoteFile(urlOrPath, '/tmp')
     if option not in services:
-        die('Detect option must be one of %s' % str(services.keys()))
+        die('Detect option must be one of %s' % str(list(services.keys())))
     service = services[option]
     status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
             {'Accept': responseMimeType, 'Content-Disposition': 'attachment; filename=%s' % os.path.basename(path)},
@@ -268,7 +275,9 @@ def main(argv=None):
     try:
         opts, argv = getopt.getopt(argv[1:], 'hi:s:o:p:v',
           ['help', 'install=', 'server=', 'output=', 'port=', 'verbose'])
-    except getopt.GetoptError as (msg, bad_opt):
+    except getopt.GetoptError as opt_out:
+        (msg, bad_opt) = opt_out.args
+
         die("%s error: Bad option: %s, %s" % (argv[0], bad_opt, msg))
         
     tikaServerJar = TikaServerJar
@@ -299,4 +308,3 @@ if __name__ == '__main__':
         print('\n'.join([r[1] for r in resp]))
     else:
         print(resp)
-

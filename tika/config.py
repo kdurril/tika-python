@@ -16,7 +16,7 @@
 # limitations under the License.
 
 from __future__ import unicode_literals
-from tika import getConfig
+from tika.tika import getConfig
 
 def getParsers():
     return getConfig('parsers')[1]
