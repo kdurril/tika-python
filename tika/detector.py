@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # 
-
+from __future__ import unicode_literals
 from tika import detectType1, callServer, ServerEndpoint
 
 def from_file(filename):
