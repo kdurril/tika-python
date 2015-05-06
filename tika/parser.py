@@ -22,7 +22,7 @@ import json
 
 def from_file(filename):
     jsonOutput = parse1('all', filename)
-    return _parse(str(jsonOutput[1]))
+    return _parse(jsonOutput[1].decode(encoding='UTF-8'))
 
 def from_buffer(string):
     status, response = callServer('put', ServerEndpoint + '/rmeta', string,
@@ -33,7 +33,7 @@ def _parse(jsonOutput):
     parsed={}
     if not jsonOutput:
         return parsed
-    realJson = json.loads(jsonOutput[1])
+    realJson = json.loads(jsonOutput)
 
     content = ""
     for js in realJson:
