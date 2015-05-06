@@ -22,7 +22,7 @@ import json
 
 def from_file(filename):
     jsonOutput = parse1('all', filename)
-    return _parse(jsonOutput)
+    return _parse(str(jsonOutput[1]))
 
 def from_buffer(string):
     status, response = callServer('put', ServerEndpoint + '/rmeta', string,
