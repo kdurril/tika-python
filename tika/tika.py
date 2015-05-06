@@ -223,10 +223,10 @@ def getRemoteFile(urlOrPath, destPath):
     if urlp.scheme == '':
         return (os.path.abspath(urlOrPath), 'local')
     else:
-        filename = urlOrPath.rsplit('/',1)[1]
+        filename = urlOrPath[-16:]
         destPath = destPath + '/' +filename
         echo2('Retrieving %s to %s.' % (urlOrPath, destPath))
-        urlretrieve(urlOrPath, destPath)
+        destPath, headers = urlretrieve(urlOrPath,filename)
         return (destPath, 'remote')
 
 def getRemoteJar(urlOrPath, destPath):
