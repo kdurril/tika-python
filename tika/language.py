@@ -15,14 +15,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # 
-from __future__ import unicode_literals
-from tika.tika import detectType1, callServer, ServerEndpoint
+
+from tika import detectLang1, callServer, ServerEndpoint
 
 def from_file(filename):
-    jsonOutput = detectType1('type', filename)
+    jsonOutput = detectLang1('file', filename)
     return jsonOutput[1]
 
 def from_buffer(string):
-    status, response = callServer('put', ServerEndpoint, '/detect/stream', string,
+    status, response = callServer('put', ServerEndpoint, '/language/string', string,
                                   {'Accept': 'text/plain'}, False)
     return response
