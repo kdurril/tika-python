@@ -27,7 +27,8 @@ from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.request import urlretrieve
 import requests
-import socket 
+import socket
+import tempfile
 
 
 USAGE = """
@@ -69,7 +70,7 @@ Example usage as python client:
 -- jsonOutput = parse1('all', filename)
 
 """
-
+'''
 <<<<<<< HEAD
 =======
 import sys, os, getopt, time
@@ -78,9 +79,9 @@ from urlparse import urlparse
 import requests
 import socket 
 import tempfile
-
+'''
 TikaJarPath = tempfile.gettempdir()
->>>>>>> caeec218f8c2fe97cb8809bbc6f0a96324239c53
+
 TikaServerJar  = "http://search.maven.org/remotecontent?filepath=org/apache/tika/tika-server/1.8/tika-server-1.8.jar"
 StartServerCmd = "java -jar %s --port %s >& "+ TikaJarPath +"/tika-server.log &"
 ServerHost = "localhost"
@@ -122,20 +123,15 @@ def parseAndSave(option, urlOrPaths, outDir=None, serverEndpoint=ServerEndpoint,
     filename with an extension of '_meta.json'."""
     metaPaths = []
     for path in urlOrPaths:
-         if outDir is None:
-             metaPath = path + metaExtension
-         else:
-             metaPath = os.path.join(outDir, os.path.split(path)[1] + metaExtension)
-             echo2('Writing %s' % metaPath)
-             with open(metaPath, 'w') as f:
-<<<<<<< HEAD
-                 f.write(parse1(option, path, serverEndpoint, verbose,\
+        if outDir is None:
+            metaPath = path + metaExtension
+        else:
+            metaPath = os.path.join(outDir, os.path.split(path)[1] + metaExtension)
+            echo2('Writing %s' % metaPath)
+            with open(metaPath, 'w') as f:
+                f.write(parse1(option, path, serverEndpoint, verbose,\
                                    responseMimeType, services)) 
-=======
-                 print >>f, parse1(option, path, serverEndpoint, verbose, tikaServerJar, \
-                                   responseMimeType, services)
->>>>>>> caeec218f8c2fe97cb8809bbc6f0a96324239c53
-         metaPaths.append(metaPath)
+        metaPaths.append(metaPath)
     return metaPaths
 
 
@@ -156,19 +152,12 @@ def parse1(option, urlOrPath, serverEndpoint=ServerEndpoint, verbose=Verbose, ti
     if option not in services:
         warn('config option must be one of meta, text, or all; using all.')
     service = services.get(option, services['all'])
-<<<<<<< HEAD
     if service == '/tika': 
         responseMimeType = 'text/plain'
     status, response = callServer('put', serverEndpoint, service, open(path, 'rb'),
                                   {'Accept': responseMimeType}, verbose)
     if mode == 'remote': 
         os.unlink(path)
-=======
-    if service == '/tika': responseMimeType = 'text/plain'
-    status, response = callServer('put', serverEndpoint, service, open(path, 'r'),
-                                  {'Accept': responseMimeType}, verbose, tikaServerJar)
-    if type == 'remote': os.unlink(path)
->>>>>>> caeec218f8c2fe97cb8809bbc6f0a96324239c53
     return (status, response)
 
 
@@ -271,7 +260,11 @@ def getRemoteFile(urlOrPath, destPath):
     if urlp.scheme == '':
         return (os.path.abspath(urlOrPath), 'local')
     else:
-        filename = urlOrPath[-16:]
+        if '=' in urlOrPath:
+            filename = urlOrPath.split('=')[-1]
+        else:
+            filename = urlOrPath.split('/')[-1]
+            
         destPath = destPath + '/' +filename
         echo2('Retrieving %s to %s.' % (urlOrPath, destPath))
         destPath, headers = urlretrieve(urlOrPath,filename)
