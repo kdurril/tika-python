@@ -3,6 +3,7 @@
 import unittest
 #import tika
 import tika.parser
+import tika.tika
 #from english_class import AttrSet, row_synth, row_keys, to_csv, to_json
 
 
@@ -12,14 +13,21 @@ class CreateTest(unittest.TestCase):
     "Test for New Generator.py Methods"
 
     def test_local_pdf(self):
-        "Parse local PDF"
+        'Parse local PDF'
         self.assertTrue(tika.parser.from_file('201504160015.pdf'))
 
     def test_remote_pdf(self):
-        "Parse remote PDF"
+        'parse remote PDF'
         self.assertTrue(tika.parser.from_file(\
-            'http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201502090012'))
-
+            'http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201504160015'))
+    def test_remote_html(self):
+        'parse remote HTML'
+        self.assertTrue(tika.parser.from_file(\
+            'http://philadelphia.pa.gegov.com/_templates/551/RetailFood/_report_full.cfm?inspectionID=8B2C8CA4-8039-EC2C-F94DBD247613E5CC&domainID=551&userID=0'))
+    def test_remote_mp3(self):
+        'parese remote mp3'
+        self.assertTrue(tika.parser.from_file(\
+            "parse remote mp3"'http://downloads.bbc.co.uk/podcasts/worldservice/6min_vocab/6min_vocab_20150511-1134a.mp3'))
 
 if __name__ == '__main__':
 	unittest.main()
