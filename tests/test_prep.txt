@@ -49,7 +49,7 @@ compressed
 zip - http://pubs.usgs.gov/of/2007/1089/Haw_St_tabfiles.zip
 
 
-csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=4/12/2015%201:00:00%20AM&to=4/19/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
+csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=4/12/2015%2012:00:00%20AM&to=4/19/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
 csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=4/20/2015%2012:00:00%20AM&to=4/23/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
 csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=4/24/2015%2012:00:00%20AM&to=4/30/2015%201:00:00%20AM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
 csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=5/1/2015%2012:00:00%20AM&to=5/7/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
