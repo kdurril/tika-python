@@ -1,8 +1,8 @@
 
 
 import unittest
-import tika
-import tika.parse
+#import tika
+import tika.parser
 #from english_class import AttrSet, row_synth, row_keys, to_csv, to_json
 
 
@@ -13,11 +13,11 @@ class CreateTest(unittest.TestCase):
 
     def test_local_pdf(self):
         "Parse local PDF"
-        self.assertTrue(tika.parse.from_file('201504160015.pdf'))
+        self.assertTrue(tika.parser.from_file('201504160015.pdf'))
 
     def test_local_pdf(self):
         "Parse remote PDF"
-        self.assertTrue(tika.parse.from_file(\
+        self.assertTrue(tika.parser.from_file(\
             'http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201502090012'))
 
 
