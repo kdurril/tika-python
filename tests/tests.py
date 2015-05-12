@@ -15,7 +15,7 @@ class CreateTest(unittest.TestCase):
         "Parse local PDF"
         self.assertTrue(tika.parser.from_file('201504160015.pdf'))
 
-    def test_local_pdf(self):
+    def test_remote_pdf(self):
         "Parse remote PDF"
         self.assertTrue(tika.parser.from_file(\
             'http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201502090012'))
