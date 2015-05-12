@@ -55,7 +55,9 @@ csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date
 csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=5/1/2015%2012:00:00%20AM&to=5/7/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
 csv - http://data.octo.dc.gov/Attachment.aspx?where=Citywide&area=&what=CSV&date=Issueddate&from=5/8/2015%2012:00:00%20AM&to=5/10/2015%2010:00:00%20PM&dataset=DCRA_PERMIT&datasetid=5&whereInd=0&areaInd=0&whatInd=0&dateInd=0&whenInd=0
 
-
+Language
+Persian
+pdf - https://sllc.umd.edu/sites/sllc.umd.edu/files/mehregan.pdf
 
 Document metadata
 Document content
