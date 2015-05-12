@@ -1,0 +1,28 @@
+Tika
+Tika supports dozens of document types. Each should be tested when extended
+Client applications manage event streams, so test stream type/doc type combinations
+ 
+Document types
+Document metadata
+Document content
+
+Streaming
+Transfer Protocols
+
+Text encoding
+Language detection
+
+
+Document Types
+https://tika.apache.org/1.8/formats.html
+
+Online
+http://webapps.achd.net/Restaurant/RestaurantSearch.aspx
+http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201502090012
+http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER=201308220023
+
+http://www.phila.gov/health/foodprotection/FoodSafetyReports.html
+http://philadelphia.pa.gegov.com/_templates/551/RetailFood/_report_full.cfm?inspectionID=8B2C8CA4-8039-EC2C-F94DBD247613E5CC&domainID=551&userID=0
+
+Document metadata
+Document content
