@@ -1,7 +1,7 @@
 
 
 import unittest
-#import tika
+import tika
 import tika.parser
 import tika.tika
 #from english_class import AttrSet, row_synth, row_keys, to_csv, to_json
@@ -27,11 +27,11 @@ class CreateTest(unittest.TestCase):
     def test_remote_mp3(self):
         'parese remote mp3'
         self.assertTrue(tika.parser.from_file(\
-            "parse remote mp3"'http://downloads.bbc.co.uk/podcasts/worldservice/6min_vocab/6min_vocab_20150511-1134a.mp3'))
+            'http://downloads.bbc.co.uk/podcasts/worldservice/6min_vocab/6min_vocab_20150511-1134a.mp3'))
     def test_remote_jpg(self):
         'parse remote jpg'
         self.assertTrue(tika.parser.from_file('http://www.defense.gov/multimedia/web_graphics/coastgrd/USCGb.jpg'))
-   def test_remote_
+   
 
 
 if __name__ == '__main__':
