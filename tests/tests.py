@@ -31,7 +31,9 @@ class CreateTest(unittest.TestCase):
     def test_remote_jpg(self):
         'parse remote jpg'
         self.assertTrue(tika.parser.from_file('http://www.defense.gov/multimedia/web_graphics/coastgrd/USCGb.jpg'))
-   
+    #def test_language_perisan(self):
+    #    'parse remote persian'
+    #    self.assertTrue(tika.parser.from_file('https://sllc.umd.edu/sites/sllc.umd.edu/files/mehregan.pdf'))
 
 
 if __name__ == '__main__':
